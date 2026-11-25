@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zxppez</title>
+<meta name="description" content="zxppez, web and plugin developer and owner of the DualMines Minecraft server.">
+<link rel="icon" href="assets/dualmines-logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Pixelify+Sans:wght@500;700&family=Sora:wght@600;700&display=swap">
+<style>
+/* VOICE confident, clean developer portfolio with a wink to the game he builds for
+   IDEA a launcher: a floating block island as the hero, a multiplayer server list for experience, a hotbar for skills
+   PICTURE isometric voxel island drawn pixel by pixel in SVG, with a diamond ore block bobbing above it
+   COLOUR near-black night ground, diamond cyan accent, emerald only for "online", splash yellow for one joke
+   TYPE Sora for headings, Inter for reading, Pixelify Sans only for in-game bits (splash, server names, toast)
+   LAYOUT sticky bar; hero text + island; server list; featured work; hotbar; contact. Stacks under 860px */
+:root{color-scheme:dark;--bg:#0a0c10;--bg2:#0f1218;--card:#12161d;--card2:#171c25;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);--ink:#e9eef4;--muted:#8d97a6;--dim:#5f6977;--cyan:#5ce1e6;--cyan2:#2bb5c0;--emerald:#3ddc84;--gold:#ffe14d;--red:#ff6b6b;--r:14px}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 520px at 78% 8%,rgba(92,225,230,.13),transparent 70%),radial-gradient(700px 500px at 0% 60%,rgba(61,220,132,.05),transparent 70%),linear-gradient(var(--line) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/48px 48px;mask-image:linear-gradient(#000 0,#000 40%,transparent 90%);-webkit-mask-image:linear-gradient(#000 0,rgba(0,0,0,.5) 50%,transparent 100%)}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;font-weight:700;line-height:1.08;margin:0;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1160px,100%);margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px))}
+section{padding-block:clamp(44px,5.5vw,76px)}
+.px{font-family:"Pixelify Sans",monospace}
+
+/* nav */
+.bar{position:sticky;top:0;z-index:20;background:rgba(10,12,16,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:700 17px Sora,sans-serif;text-decoration:none;flex:none}
+.brand svg{width:26px;height:26px}
+.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.links::-webkit-scrollbar{display:none}
+.links a{flex:none;text-decoration:none;color:var(--muted);font-weight:500;font-size:15px;padding:10px 12px;border-radius:10px}
+.links a:hover,.links a.on{color:var(--ink);background:rgba(255,255,255,.05)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 20px;border-radius:12px;font:500 15px Inter,sans-serif;text-decoration:none;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--ink);cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.btn:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.24);transform:translateY(-1px)}
+.btn.main{background:var(--cyan);border-color:var(--cyan);color:#04252a;font-weight:600}
+.btn.main:hover{background:#7debef}
+.btn svg{width:18px;height:18px;flex:none}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;min-height:min(calc(100svh - 64px),780px);padding-block:48px 40px}
+.live{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 10px;border:1px solid var(--line2);border-radius:999px;background:rgba(255,255,255,.03);font-size:14px;color:var(--muted);text-decoration:none;margin-bottom:22px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--dim)}
+.live.up i{background:var(--emerald);box-shadow:0 0 0 4px rgba(61,220,132,.18)}
+.live b{color:var(--ink);font-weight:500}
+.name{position:relative;display:inline-block}
+.hero h1{font-size:clamp(64px,10vw,132px);letter-spacing:-.035em}
+.hero h1 .grad{background:linear-gradient(100deg,#fff 30%,var(--cyan) 110%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.splash{position:absolute;right:0;top:6%;letter-spacing:0;transform:translate(82%,0) rotate(-16deg);font:700 clamp(14px,1.6vw,19px) "Pixelify Sans",monospace;color:var(--gold);text-shadow:2px 2px 0 #3d3610;white-space:nowrap;animation:pulse .6s ease-in-out infinite alternate;pointer-events:none}
+@keyframes pulse{to{transform:translate(82%,0) rotate(-16deg) scale(1.08)}}
+.role{font:600 clamp(20px,2.2vw,25px) Sora,sans-serif;color:var(--muted);margin-top:14px;letter-spacing:-.01em}
+.role em{font-style:normal;color:var(--ink)}
+.lede{max-width:34em;color:var(--muted);font-size:17px;margin:18px 0 30px}
+.island{position:relative;aspect-ratio:1/.92;width:100%;max-width:560px;justify-self:center}
+.island svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.island .glow{position:absolute;inset:18% 12% 10%;background:radial-gradient(closest-side,rgba(92,225,230,.28),transparent);filter:blur(20px)}
+.bob{animation:bob 3.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px)}}
+.shadow{animation:shade 3.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes shade{50%{transform:scale(.8);opacity:.5}}
+
+/* section heads */
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px;margin-bottom:32px}
+.head h2{font-size:clamp(32px,4.4vw,48px)}
+.head p{color:var(--muted);max-width:30em}
+.kicker{display:block;font:500 15px Inter,sans-serif;color:var(--cyan);margin-bottom:10px;letter-spacing:0}
+
+/* featured */
+.feature{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center;padding:clamp(18px,3vw,32px);border:1px solid var(--line);border-radius:22px;background:linear-gradient(160deg,var(--card2),var(--card))}
+.browser{border-radius:12px;overflow:hidden;border:1px solid var(--line2);background:#0b0e13;box-shadow:0 30px 60px -20px rgba(0,0,0,.7),0 0 0 6px rgba(255,255,255,.02)}
+.browser .top{display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.browser .top i{width:10px;height:10px;border-radius:50%;background:#2a303a}
+.browser .top span{margin-left:10px;flex:1;font-size:12px;color:var(--dim);background:rgba(255,255,255,.04);border-radius:6px;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser img{width:100%;height:auto}
+.feature h3{font-size:clamp(26px,3vw,34px);margin-bottom:12px}
+.feature p{color:var(--muted)}
+
+/* server list */
+.servers{border:1px solid var(--line);border-radius:22px;background:var(--card);overflow:hidden}
+.servers h3{display:none;font:500 14px Inter,sans-serif;color:var(--dim);padding:16px 24px 8px;letter-spacing:0}
+.server{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:18px;align-items:center;padding:16px 24px;transition:background .15s}
+.server+.server{border-top:1px solid var(--line)}
+.server:hover{background:rgba(255,255,255,.025)}
+.server .ico{width:72px;height:72px;border-radius:12px;background:#0b0e13;border:1px solid var(--line2);display:grid;place-items:center;overflow:hidden;image-rendering:pixelated}
+.server .ico img{width:100%;height:100%;object-fit:contain;image-rendering:auto}
+.server .ico .live-ico{image-rendering:pixelated}
+.server .ico svg{width:60%;height:60%}
+.server b{display:block;font:500 21px "Pixelify Sans",monospace}
+.server .what{color:var(--muted)}
+.server .what em{font-style:normal;color:var(--red)}
+.server .addr{font-size:14px;color:var(--dim);overflow-wrap:anywhere}
+.ping{display:grid;justify-items:end;gap:6px;text-align:right;font-size:14px;color:var(--muted);white-space:nowrap}
+.ping .count{color:var(--ink);font-weight:500}
+.ping .count:empty{display:none}
+.bars{display:flex;align-items:flex-end;gap:3px;height:18px}
+.bars i{width:5px;background:var(--emerald);border-radius:1px}
+.bars.off i{background:#2a303a}
+.x{font:700 20px "Pixelify Sans",monospace;color:var(--red)}
+.empty{color:var(--dim);padding:16px 24px 20px;border-top:1px solid var(--line);margin:0}
+
+.tile{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:10px;background:var(--card2);border:1px solid var(--line2)}
+.tile svg{width:28px;height:28px}
+
+/* hotbar */
+.hotbar{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px;padding:10px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+.slot{position:relative;aspect-ratio:1;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:#0b0e13;cursor:pointer;padding:0;transition:border-color .15s,background .15s}
+.slot svg{width:46%;height:46%}
+.slot small{position:absolute;left:6px;top:3px;font:500 11px Inter,sans-serif;color:var(--dim)}
+.slot:hover{border-color:var(--line2);background:#10141b}
+.slot[aria-pressed=true]{border:2px solid var(--ink);background:#151a22;box-shadow:0 0 0 4px rgba(255,255,255,.06)}
+.detail{margin-top:14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:start;padding:24px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+.detail .tile{width:64px;height:64px}
+.detail .tile svg{width:38px;height:38px}
+.detail h3{font-size:24px}
+.detail .kind{color:var(--cyan);font-size:14px;font-weight:500}
+.detail ul{margin:10px 0 0;padding-left:18px;color:var(--muted);display:grid;gap:4px}
+.hint{color:var(--dim);font-size:14px;margin-top:12px}
+
+/* contact */
+.cta{text-align:center;padding:clamp(36px,6vw,72px) clamp(20px,4vw,48px);border:1px solid var(--line);border-radius:26px;background:radial-gradient(600px 300px at 50% 0%,rgba(92,225,230,.14),transparent 70%),var(--card)}
+.cta h2{font-size:clamp(32px,5vw,56px);margin-bottom:14px}
+.cta p{color:var(--muted);max-width:30em;margin:0 auto 28px}
+.cta .row{justify-content:center}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;color:var(--dim);font-size:14px;padding-block:32px 44px;border-top:1px solid var(--line);margin-top:56px}
+
+/* toast */
+.toast{position:fixed;top:78px;right:20px;z-index:40;display:flex;gap:12px;align-items:center;padding:12px 18px 12px 12px;border-radius:12px;background:#151a22;border:1px solid var(--line2);box-shadow:0 20px 40px -12px rgba(0,0,0,.7);animation:in .35s cubic-bezier(.2,.9,.3,1.3);max-width:calc(100% - 40px)}
+.toast .tile{width:44px;height:44px}
+.toast b{display:block;font:700 16px "Pixelify Sans",monospace;color:var(--gold)}
+.toast span{font-size:14px;color:var(--muted)}
+@keyframes in{from{transform:translateY(-16px);opacity:0}}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.seen{opacity:1;transform:none}
+
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:0;padding-top:36px}.island{max-width:400px;order:-1;margin-bottom:8px}.feature{grid-template-columns:1fr}}
+@media(max-width:600px){.links a:not(.keep){display:none}.server{grid-template-columns:56px minmax(0,1fr);padding:14px 18px;gap:14px}.server .ico{width:56px;height:56px}.ping{grid-column:2;justify-items:start;text-align:left;grid-auto-flow:column;justify-content:start;align-items:center;gap:8px}.hotbar{grid-template-columns:repeat(5,minmax(0,1fr))}.detail{grid-template-columns:1fr}.splash{top:-4px;font-size:13px;transform:translate(30%,0) rotate(-12deg);animation:none}.hero h1{margin-top:12px}.empty{padding-inline:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.splash,.bob,.shadow,.toast{animation:none}.reveal{opacity:1;transform:none;transition:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true" id="brandIco"></svg>zxppez</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a class="keep" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <a class="live" id="live" href="#experience"><i></i><span id="liveText">DualMines · play.dualmines.net</span></a>
+    <h1><span class="name"><span class="grad">zxppez</span><span class="splash" aria-hidden="true">Owner of DualMines!</span></span></h1>
+    <p class="role">I build <em>websites</em>, <em>Discord tools</em> and <em>Minecraft plugins</em>.</p>
+    <p class="lede">I've owned, developed for and staffed Minecraft servers with communities from a few hundred up to 4,500+ members. These days I run DualMines and build the tech behind it.</p>
+    <div class="row">
+      <a class="btn main" href="#experience">See my experience</a>
+      <button class="btn" type="button" data-copy="play.dualmines.net"><span data-icon="pick"></span>Copy server IP</button>
+    </div>
+  </div>
+  <div class="island" aria-hidden="true"><div class="glow"></div><svg id="islandArt"></svg></div>
+</section>
+
+<section id="experience" class="wrap">
+  <div class="head reveal"><div><span class="kicker">Multiplayer</span><h2>Experience</h2></div><p>Servers I've owned, developed for and staffed.</p></div>
+  <div class="servers reveal" id="servers"></div>
+</section>
+
+<section id="work" class="wrap" style="padding-top:0">
+  <div class="head reveal"><div><span class="kicker">Featured work</span><h2>DualMines</h2></div><p>My own Box PvP server, and the website I built for it.</p></div>
+  <article class="feature reveal">
+    <a class="browser" href="https://www.dualmines.net" target="_blank" rel="noopener" aria-label="Open dualmines.net">
+      <div class="top"><i></i><i></i><i></i><span>www.dualmines.net</span></div>
+      <img src="assets/dualmines-site.webp" alt="The DualMines home page: logo, live player count, server address and Discord button" width="1280" height="800" loading="lazy">
+    </a>
+    <div>
+      <h3>dualmines.net</h3>
+      <p style="margin-bottom:26px">Designed, built and hosted by me, start to finish.</p>
+      <div class="row">
+        <a class="btn main" href="https://www.dualmines.net" target="_blank" rel="noopener">Visit site</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="skills" class="wrap">
+  <div class="head reveal"><div><span class="kicker">Inventory</span><h2>Skills</h2></div><p>Pick a slot to see where I've used it.</p></div>
+  <div class="hotbar reveal" id="hotbar" role="group" aria-label="Skills"></div>
+  <div class="detail" id="detail" aria-live="polite"></div>
+  <p class="hint">Tip: press 1–9 to switch slots.</p>
+</section>
+
+<section id="contact" class="wrap">
+  <div class="cta reveal">
+    <h2>Let's build something</h2>
+    <p>Want a website, plugin or Discord tool for your server? Message me on Discord.</p>
+    <div class="row">
+      <a class="btn main" href="https://discord.gg/uB8V8hsAcp" target="_blank" rel="noopener"><span data-icon="key"></span>Discord</a>
+      <button class="btn" type="button" data-copy="play.dualmines.net"><span data-icon="pick"></span>play.dualmines.net</button>
+    </div>
+  </div>
+  <footer class="foot"><span>© 2026 zxppez</span><span>Not affiliated with Mojang or Microsoft.</span></footer>
+</section>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+{
+/* ================= EDIT YOUR INFO HERE ================= */
+const SERVERS = [
+  // The icon is pulled live from the server (the same one you see in the in-game server list) using its address.
+  // "fallback" is shown if the server can't be reached: an image path, or a pixel icon: grass, book, pick, key, page, bolt, cup, flame, cloud, ore
+  // Add  icon: "path/to/image.png"  to a server to always use your own image instead.
+  { name: "RunedMC", role: "Owner", address: "play.runedmc.net", members: "650+", fallback: "book" },
+  { name: "DualMines", role: "Owner", address: "play.dualmines.net", members: "150+", fallback: "assets/dualmines-logo.webp" },
+  { name: "Cook It", role: "Owner", address: "play.runedmc.net", members: "200+", fallback: "flame" },
+  { name: "Lightskies", role: "Developer & Admin", address: "play.lightskies.gg", members: "4.5k+", fallback: "cloud" },
+  { name: "HorizonMines", role: "Mod", address: "horizonmines.minehut.gg", members: "1.5k+", fallback: "pick" }
+];
+const MORE = "+ roughly 15 more staff positions across other servers";
+const SKILLS = [
+  { icon: "page", name: "HTML & CSS", kind: "Web", used: ["Websites for Minecraft servers", "Responsive layouts that work on phones"] },
+  { icon: "bolt", name: "JavaScript", kind: "Web", used: ["Interactive pages and admin tools", "Live data from game servers"] },
+  { icon: "cup", name: "Java", kind: "Minecraft", used: ["Paper plugins", "Server-side features and integrations"] },
+  { icon: "flame", name: "Firebase", kind: "Backend", used: ["Databases and logins", "Security rules"] },
+  { icon: "cloud", name: "Cloudflare Workers", kind: "Backend", used: ["Serverless APIs", "Discord integrations"] },
+  { icon: "key", name: "Discord", kind: "Community", used: ["Bots and Discord login", "Running community Discords"] },
+  { icon: "git", name: "Git & GitHub", kind: "Tools", used: ["Version control for every project", "GitHub Pages hosting"] },
+  { icon: "pick", name: "Server management", kind: "Minecraft", used: ["Owner of three servers", "Developer, admin and mod roles on others"] },
+  { icon: "brush", name: "Design", kind: "Creative", used: ["Server branding and websites", "This portfolio"] }
+];
+/* ======================================================= */
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+let seed = 7;
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+/* ---------- pixel icons (8x8, original) ---------- */
+const PAL = { G: "#6abe30", g: "#4a8a2a", D: "#8a5a32", d: "#6b4426", B: "#5ce1e6", b: "#2bb5c0", W: "#9a6a3a", R: "#d9493a", P: "#efe6cc", O: "#f08a3c", Y: "#ffd84a", C: "#c8743a", S: "#dfe8ee", N: "#ffffff", V: "#a77ff0", v: "#7552c4", K: "#3a404a", k: "#2a2f37", L: "#a9d4ff" };
+const ICONS = {
+  grass: ["GGGGGGGG", "GgGGGgGG", "DgDDDgDG", "DDDDDDDD", "DdDDDdDD", "DDDDDDDD", "DDDdDDDd", "DdDDDDDD"],
+  book: ["RRRRRRR.", "RRRRRRRP", "RRYYYRRP", "RRRRRRRP", "RRYYRRRP", "RRRRRRRP", "RRRRRRRP", ".PPPPPPP"],
+  pick: ["..BBBBB.", ".B....bB", ".....W.b", "....W...", "...W....", "..W.....", ".W......", "W......."],
+  key: ["..YYY...", ".Y...Y..", ".Y...Y..", "..YYY...", "...Y....", "...YY...", "...Y....", "...YY..."],
+  page: ["PPPPPP..", "P....PP.", "P.OO..P.", "P.....P.", "P.OOO.P.", "P.....P.", "P.OO..P.", "PPPPPPP."],
+  bolt: ["....YY..", "...YY...", "..YY....", ".YYYYY..", "...YY...", "..YY....", ".YY.....", "Y......."],
+  cup: ["..S..S..", "...S..S.", "CCCCCC..", "CCCCCCCC", "CCCCCC.C", "CCCCCCCC", ".CCCC...", "........"],
+  flame: ["...O....", "..OO....", "..OYO...", ".OYYO...", ".OYYYO..", "OYYNYYO.", "OYYYYYO.", ".OOOOO.."],
+  cloud: ["........", "...LL...", "..LLLL..", ".LLLLLL.", "LLLLLLLL", "LLLLLLLL", ".LLLLLL.", "........"],
+  git: [".O......", ".O...O..", ".O..O...", ".O.O....", ".OO.....", ".O......", ".O......", "........"],
+  brush: ["......WW", ".....WW.", "....WW..", "...WW...", "..VV....", ".VVV....", "VVv.....", "Vv......"],
+  ore: ["KKKKKKKK", "KBKKKKbK", "KKKBBKKK", "KKbKKKKK", "KKKKKBKK", "KBKKKKKK", "KKKKbKBK", "KKKKKKKK"]
+};
+const rects = (name) => { let r = ""; (ICONS[name] || ICONS.ore).forEach((row, y) => [...row].forEach((c, x) => { if (PAL[c]) r += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${PAL[c]}"/>`; })); return r; };
+const icon = (name) => `<svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true">${rects(name)}</svg>`;
+document.querySelectorAll("[data-icon]").forEach((el) => (el.outerHTML = icon(el.dataset.icon)));
+document.getElementById("brandIco").innerHTML = rects("ore");
+
+/* ---------- isometric block island ---------- */
+(() => {
+  const a = 56; // half-width of a block
+  const shade = (hex, f) => { const n = parseInt(hex.slice(1), 16); const c = (v) => Math.max(0, Math.min(255, Math.round(v * f))); return `rgb(${c(n >> 16)},${c((n >> 8) & 255)},${c(n & 255)})`; };
+  const pick = (list) => list[(rnd() * list.length) | 0];
+  const TEX = {
+    grassTop: () => pick(["#5fae2e", "#6abe30", "#57a12a", "#74c83a", "#5fae2e"]),
+    grassSide: (u, v) => v < 2 || (v === 2 && rnd() > .5) ? pick(["#5fae2e", "#6abe30", "#57a12a"]) : pick(["#8a5a32", "#7a4f2b", "#946238", "#6b4426"]),
+    dirt: () => pick(["#8a5a32", "#7a4f2b", "#946238", "#6b4426"]),
+    stone: () => pick(["#7d7f84", "#717378", "#888a8f", "#6a6c71"]),
+    ore: () => rnd() > .8 ? pick(["#5ce1e6", "#2bb5c0", "#a6f3f5"]) : pick(["#7d7f84", "#717378", "#888a8f", "#6a6c71"]),
+    log: (u) => (u === 0 || u === 7) ? "#4e3a22" : pick(["#6b5032", "#5e4529", "#735637"]),
+    leaves: () => pick(["#3f8a2a", "#4a9a30", "#357322", "#4f9f36", "#2f6a20"])
+  };
+  const B = { grass: ["grassTop", "grassSide"], dirt: ["dirt", "dirt"], stone: ["stone", "stone"], ore: ["ore", "ore"], log: ["log", "log"], leaves: ["leaves", "leaves"] };
+  const blocks = [];
+  const put = (i, j, k, t) => blocks.push({ i, j, k, t });
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) put(i, j, 0, "grass");
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) if (!((i === 0 || i === 3) && (j === 0 || j === 3))) put(i, j, -1, i === 2 && j === 3 ? "ore" : "dirt");
+  [[1, 1], [1, 2], [2, 1], [2, 2]].forEach(([i, j]) => put(i, j, -2, i === 2 && j === 2 ? "ore" : "stone"));
+  put(2, 2, -3, "stone");
+  // small tree
+  put(1, 1, 1, "log"); put(1, 1, 2, "log");
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) put(i, j, 3, "leaves");
+  [[1, 1], [0, 1], [1, 0], [2, 1], [1, 2]].forEach(([i, j]) => put(i, j, 4, "leaves"));
+  const has = new Set(blocks.map((b) => `${b.i},${b.j},${b.k}`));
+  const at = (i, j, k) => has.has(`${i},${j},${k}`);
+  const face = (m, tex, f, uv = (u, v) => [u, v]) => {
+    let r = "";
+    for (let v = 0; v < 8; v++) for (let u = 0; u < 8; u++) r += `<rect x="${u}" y="${v}" width="1.04" height="1.04" fill="${shade(TEX[tex](u, v), f)}"/>`;
+    return `<g transform="matrix(${m.join(",")})">${r}</g>`;
+  };
+  const draw = (b, ox, oy, alone) => {
+    const X = ox + (b.i - b.j) * a, Y = oy + (b.i + b.j) * a / 2 - b.k * a;
+    const [top, side] = B[b.t];
+    let s = "";
+    if (alone || !at(b.i, b.j, b.k + 1)) s += face([a / 8, a / 16, -a / 8, a / 16, X, Y], top, 1.08);
+    if (alone || !at(b.i, b.j + 1, b.k)) s += face([a / 8, a / 16, 0, a / 8, X - a, Y + a / 2], side, .82);
+    if (alone || !at(b.i + 1, b.j, b.k)) s += face([a / 8, -a / 16, 0, a / 8, X, Y + a], side, .62);
+    return s;
+  };
+  blocks.sort((p, q) => (p.i + p.j) - (q.i + q.j) || p.k - q.k || p.i - q.i);
+  const ox = 300, oy = 230;
+  let land = blocks.map((b) => draw(b, ox, oy)).join("");
+  // floating diamond ore block
+  const fb = { i: 0, j: 0, k: 0, t: "ore" };
+  const floatSvg = draw(fb, 0, 0, true);
+  const svg = document.getElementById("islandArt");
+  svg.setAttribute("viewBox", "60 0 480 560");
+  svg.setAttribute("shape-rendering", "crispEdges");
+  svg.innerHTML = `${land}<ellipse class="shadow" cx="112" cy="346" rx="30" ry="12" fill="rgba(0,0,0,.3)"/>
+    <g class="bob"><g transform="translate(108 66) scale(.62)">${floatSvg}</g></g>`;
+})();
+
+/* ---------- server list ---------- */
+const bars = () => `<span class="bars" aria-hidden="true">${[6, 9, 12, 15, 18].map((h) => `<i style="height:${h}px"></i>`).join("")}</span>`;
+const isPath = (v) => /[./]/.test(v || "");
+const fallbackIco = (v) => isPath(v) ? `<img src="${esc(v)}" alt="" width="72" height="72">` : icon(v || "grass");
+const ico = (s) => {
+  const src = s.icon || (s.address ? "https://api.mcsrvstat.us/icon/" + encodeURIComponent(s.address) : "");
+  return src ? `<img class="live-ico" src="${esc(src)}" alt="" width="72" height="72" loading="lazy" data-fallback="${esc(s.fallback || "")}">` : fallbackIco(s.fallback);
+};
+document.getElementById("servers").innerHTML = SERVERS.map((s) => `<div class="server">
+    <div class="ico">${ico(s)}</div>
+    <div><b>${esc(s.name)}</b><div class="what">${esc(s.role)}</div>${s.address ? `<div class="addr">${esc(s.address)}</div>` : ""}</div>
+    <div class="ping">${bars()}<span><span class="count">${esc(s.members)}</span> members</span></div>
+  </div>`).join("") + `<p class="empty">${esc(MORE)}</p>`;
+
+// if a server icon can't load (offline, blocked), swap in the fallback
+document.querySelectorAll(".live-ico").forEach((img) => {
+  const swap = () => { img.parentElement.innerHTML = fallbackIco(img.dataset.fallback); };
+  img.addEventListener("error", swap, { once: true });
+  if (img.complete && img.naturalWidth === 0) swap();
+});
+
+// live player count (works once hosted; quietly skipped if blocked)
+fetch("https://api.mcsrvstat.us/3/play.dualmines.net").then((r) => r.json()).then((d) => {
+  if (!d || !d.online || !d.players) return;
+  const live = document.getElementById("live");
+  live.classList.add("up");
+  document.getElementById("liveText").innerHTML = `<b>${esc(d.players.online)} playing</b> on DualMines right now`;
+}).catch(() => {});
+
+/* ---------- hotbar ---------- */
+const bar = document.getElementById("hotbar"), detail = document.getElementById("detail");
+bar.innerHTML = SKILLS.map((s, i) => `<button class="slot" type="button" id="skill-${i}" data-i="${i}" aria-pressed="false" aria-label="${esc(s.name)}"><small>${i + 1}</small>${icon(s.icon)}</button>`).join("");
+const select = (i) => {
+  const s = SKILLS[i];
+  bar.querySelectorAll(".slot").forEach((b) => b.setAttribute("aria-pressed", String(Number(b.dataset.i) === i)));
+  detail.innerHTML = `<span class="tile">${icon(s.icon)}</span><div><span class="kind">${esc(s.kind)}</span><h3>${esc(s.name)}</h3><ul>${s.used.map((u) => `<li>${esc(u)}</li>`).join("")}</ul></div>`;
+};
+bar.addEventListener("click", (e) => { const b = e.target.closest(".slot"); if (b) select(Number(b.dataset.i)); });
+bar.addEventListener("keydown", (e) => {
+  const b = e.target.closest(".slot"), m = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+  if (!b || m === undefined) return;
+  e.preventDefault();
+  const n = (Number(b.dataset.i) + m + SKILLS.length) % SKILLS.length;
+  document.getElementById("skill-" + n).focus(); select(n);
+});
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey || e.metaKey || e.altKey || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
+  const n = Number(e.key);
+  if (n >= 1 && n <= SKILLS.length) select(n - 1);
+});
+select(0);
+
+/* ---------- copy IP ---------- */
+const toast = document.getElementById("toast");
+let timer;
+const show = (title, msg) => {
+  toast.hidden = true; void toast.offsetWidth;
+  toast.innerHTML = `<span class="tile">${icon("ore")}</span><div><b>${esc(title)}</b><span>${esc(msg)}</span></div>`;
+  toast.hidden = false; clearTimeout(timer); timer = setTimeout(() => (toast.hidden = true), 2800);
+};
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-copy]");
+  if (!b) return;
+  const ip = b.dataset.copy;
+  try { navigator.clipboard.writeText(ip).then(() => show("Achievement get!", "Copied " + ip), () => show("Server IP", ip)); } catch (err) { show("Server IP", ip); }
+});
+
+/* ---------- nav highlight + reveal ---------- */
+const navLinks = [...document.querySelectorAll(".links a")];
+const spy = new IntersectionObserver((es) => es.forEach((en) => {
+  if (en.isIntersecting) navLinks.forEach((l) => l.classList.toggle("on", l.getAttribute("href") === "#" + en.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+["experience", "work", "skills", "contact"].forEach((id) => spy.observe(document.getElementById(id)));
+const rev = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("seen"); rev.unobserve(en.target); } }), { rootMargin: "0px 0px -8% 0px" });
+document.querySelectorAll(".reveal").forEach((el) => rev.observe(el));
+}
+</script>
+</body>
+</html>
